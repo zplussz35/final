@@ -85,4 +85,15 @@ public class RoomServiceImplTest {
 		Assertions.assertThrows(NullPointerException.class, () -> underTest.deleteRoom(name));
 		Mockito.verify(roomRepository).deleteByName(name);
 	}
+
+	@Test
+	void testDeleteRoomWhenRoomIsFound() {
+		// Given
+		String name = "Big room";
+		Mockito.when(roomRepository.deleteByName(name)).thenReturn(1);
+
+		//When - Then
+		Assertions.assertEquals(1, underTest.deleteRoom(name));
+		Mockito.verify(roomRepository).deleteByName(name);
+	}
 }

@@ -73,4 +73,16 @@ public class ScreeningServiceImplTest {
 		Assertions.assertThrows(NullPointerException.class, () -> underTest.deleteScreening(name,roomName,START_TIME.toString()));
 		Mockito.verify(screeningRepository).deleteByMovieTitle(name);
 	}
+
+	@Test
+	void testDeleteRoomWhenRoomIsFound() {
+		// Given
+		String name = "Avatar23";
+		String roomName = SCREENING_ENTITY.getRoom().getName();
+		Mockito.when(screeningRepository.deleteByMovieTitle(name)).thenReturn(1);
+
+		//When - Then
+		Assertions.assertEquals(1, underTest.deleteScreening(name,roomName,START_TIME.toString()));
+		Mockito.verify(screeningRepository).deleteByMovieTitle(name);
+	}
 }

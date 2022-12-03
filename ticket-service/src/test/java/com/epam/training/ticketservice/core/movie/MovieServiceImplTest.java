@@ -74,6 +74,7 @@ public class MovieServiceImplTest {
 		Mockito.verify(movieRepository).findByTitle(title);
 	}
 
+
 	@Test
 	void testDeleteMovieWhenMovieNotFound() {
 		// Given
@@ -84,4 +85,16 @@ public class MovieServiceImplTest {
 		Assertions.assertThrows(NullPointerException.class, () -> underTest.deleteMovie(title));
 		Mockito.verify(movieRepository).deleteByTitle(title);
 	}
+
+	@Test
+	void testDeleteMovieWhenMovieIsFound() {
+		// Given
+		String title = "Avatar";
+		Mockito.when(movieRepository.deleteByTitle(title)).thenReturn(1);
+
+		//When - Then
+		Assertions.assertEquals(1, underTest.deleteMovie(title));
+		Mockito.verify(movieRepository).deleteByTitle(title);
+	}
+
 }

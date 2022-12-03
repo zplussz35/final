@@ -91,6 +91,7 @@
                 <configuration>
                     <excludes>
                         <exclude>com/epam/training/**/command/**</exclude>
+                        <exclude>com/epam/training/**/configuration/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>
