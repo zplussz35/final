@@ -24,3 +24,7 @@
 1670091218939:sign out
 1670091220341:exit
 1670107061815:sign in privileged admin admin
+1670107478524:create movie mov1 action 120
+1670107482390:list movies
+1670107520547:create room rom1 12 12
+1670107523894:list rooms

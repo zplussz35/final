@@ -11,7 +11,7 @@ import com.epam.training.ticketservice.core.user.persistence.repository.UserRepo
 import lombok.RequiredArgsConstructor;
 
 @Component
-@Profile("prod")
+@Profile("!prod")
 @RequiredArgsConstructor
 public class InMemoryDatabaseInitializer {
 
