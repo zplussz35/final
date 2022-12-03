@@ -50,7 +50,6 @@ public class ScreeningCommand {
 		Movie movie = movieService.findByTitle(movieTitle);
 		Room room = roomService.findByName(roomName);
 
-
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
 

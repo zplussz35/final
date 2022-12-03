@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.epam.training.ticketservice.core.movie.persistence.entity.Movie;
-import com.epam.training.ticketservice.core.room.persistence.entity.Room;
 
 public class ScreeningTest {
 
@@ -14,7 +13,7 @@ public class ScreeningTest {
 	void testConstructor() {
 		// Given
 		Movie movie = new Movie("Avatar", "action", 120);
-		Room room = new Room("Room1", 12, 15);
+		com.epam.training.ticketservice.core.room.persistence.entity.Room room = new com.epam.training.ticketservice.core.room.persistence.entity.Room("Room1", 12, 15);
 		LocalDateTime startTime = LocalDateTime.of(2022,11,16,10,15);
 
 		// When
