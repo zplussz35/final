@@ -1,0 +1,25 @@
+1670090940446:create movie Zoli action 110
+1670090949435:sign in privileged admin admin
+1670090956970:create movie mov1 action 110
+1670090962117:create room rom1 10 10
+1670090976711:create screening mov1 rom1 2022-10-10 10:10
+1670090982859:list screenings
+1670091002062:update movie mov1 comedy 200
+1670091005337:list movies
+1670091013414:list rooms
+1670091027909:update room rom1 13 13
+1670091030832:list rooms
+1670091036687:list screenings
+1670091064279:delete movie mov1
+1670091083301:delete screening mov1 rom1 2022-10-10 10:10
+1670091087870:list screenings
+1670091092351:delete movie mov1
+1670091095177:list movies
+1670091098730:lsit rooms
+1670091101840:list rooms
+1670091105869:list screenings
+1670091111006:delete rom1
+1670091117789:delete room rom1
+1670091120309:list rooms
+1670091218939:sign out
+1670091220341:exit
