@@ -45,12 +45,11 @@ public class ScreeningCommand {
 
 	@ShellMethodAvailability("isAvailable")
 	@ShellMethod(key = "create screening ", value = "Create new screening.")
-	public ScreeningDto createScreening(String movieTitle, String roomName, String startDate, String time) {
+	public ScreeningDto createScreening(String movieTitle, String roomName, String startTime) {
 
 		Movie movie = movieService.findByTitle(movieTitle);
 		Room room = roomService.findByName(roomName);
 
-		String startTime = startDate + " " + time;
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
