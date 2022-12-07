@@ -48,6 +48,6 @@ public class ScreeningDtoTest {
 		ScreeningDto underTest = new ScreeningDto(movie,room,startTime);
 
 		// Then
-		Assertions.assertEquals("Avatar (action, 120), screened in room Room1, at 2022-11-16 10:15", underTest.toString());
+		Assertions.assertEquals("Avatar (action, 120 minutes), screened in room Room1, at 2022-11-16 10:15", underTest.toString());
 	}
 }

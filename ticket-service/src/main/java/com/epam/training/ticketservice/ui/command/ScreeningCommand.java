@@ -45,7 +45,7 @@ public class ScreeningCommand {
 
 	@ShellMethodAvailability("isAvailable")
 	@ShellMethod(key = "create screening ", value = "Create new screening.")
-	public ScreeningDto createScreening(String movieTitle, String roomName, String startTime) {
+	public String createScreening(String movieTitle, String roomName, String startTime) {
 
 		Movie movie = movieService.findByTitle(movieTitle);
 		Room room = roomService.findByName(roomName);
@@ -59,10 +59,15 @@ public class ScreeningCommand {
 				.withStartTime(dateTime)
 				.build();
 
-		checkIfScreeningIsOverlapping(screeningDto);
+		String errorMessage = checkIfScreeningIsOverlapping(screeningDto);
+
+		if (errorMessage.isEmpty()){
+			screeningService.createScreening(screeningDto);
+			return screeningDto.toString();
+		}
+		return errorMessage;
 		
-		screeningService.createScreening(screeningDto);
-		return screeningDto;
+
 	}
 
 	@ShellMethodAvailability("isAvailable")
@@ -78,7 +83,7 @@ public class ScreeningCommand {
 				: Availability.unavailable("You are not an admin!");
 	}
 
-	private void checkIfScreeningIsOverlapping(ScreeningDto screeningDto) {
+	private String checkIfScreeningIsOverlapping(ScreeningDto screeningDto) {
 		LocalDateTime startTime = screeningDto.getStartTime();
 		int movieLength = screeningDto.getMovie().getLength();
 		LocalDateTime endTime = screeningDto.getStartTime().plusMinutes(movieLength);
@@ -86,12 +91,13 @@ public class ScreeningCommand {
 		for (ScreeningDto actualScreeningDto : screeningService.getScreeningList()) {
 			String actualRoomName = actualScreeningDto.getRoom().getName();
 			if (roomName.equals(actualRoomName)) {
-				checkActualScreeningIsOverlapping(actualScreeningDto, startTime, endTime);
+				return checkActualScreeningIsOverlapping(actualScreeningDto, startTime, endTime);
 			}
 		}
+		return "";
 	}
 
-	private void checkActualScreeningIsOverlapping(ScreeningDto actualScreeningDto,
+	private String checkActualScreeningIsOverlapping(ScreeningDto actualScreeningDto,
 			LocalDateTime startTime,
 			LocalDateTime endTime) {
 		int actualMovieLength = actualScreeningDto.getMovie().getLength();
@@ -103,11 +109,12 @@ public class ScreeningCommand {
 				(endTime.isAfter(actualStartTime) && endTime.isBefore(actualEndTime) ||
 						(startTime.isBefore(actualStartTime) && endTime.isAfter(actualEndTime)))
 		) {
-			throw new IllegalArgumentException("There is an overlapping screening!");
+			return "There is an overlapping screening";
 		} else if (startTime.isAfter(actualEndTime) && startTime.isBefore(actualEndTimePlusBreak)) {
-			throw new IllegalArgumentException(
-					"This would start in the break period after another screening in this room");
+			return "This would start in the break period after another screening in this room";
 		}
+
+		return "";
 
 	}
 

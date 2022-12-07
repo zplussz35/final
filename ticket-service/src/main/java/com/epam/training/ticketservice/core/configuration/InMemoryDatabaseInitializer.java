@@ -2,6 +2,7 @@ package com.epam.training.ticketservice.core.configuration;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class InMemoryDatabaseInitializer {
 
+	@Autowired
 	private final UserRepository userRepository;
 
 	@PostConstruct

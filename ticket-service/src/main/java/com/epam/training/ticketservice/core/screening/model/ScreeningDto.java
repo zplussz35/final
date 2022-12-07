@@ -59,6 +59,6 @@ public class ScreeningDto {
 
 		return movie.getTitle() +
 				" (" + movie.getGenre() +
-				", " + movie.getLength() + "), screened in room " + room.getName() + ", at " + startDate + " " + time;
+				", " + movie.getLength() + " minutes), screened in room " + room.getName() + ", at " + startDate + " " + time;
 	}
 }

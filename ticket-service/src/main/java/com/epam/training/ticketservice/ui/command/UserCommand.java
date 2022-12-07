@@ -22,7 +22,7 @@ public class UserCommand {
 		if (user.isEmpty()) {
 			return "Login failed due to incorrect credentials";
 		}
-		return user.get() + " is successfully logged in!";
+		return user.get().getUsername() + " is successfully logged in!";
 	}
 
 	@ShellMethod(key = "sign out", value = "Logging out from application")
